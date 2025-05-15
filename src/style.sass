@@ -1,0 +1,240 @@
+$bgColor: #F3E8D4
+$useThing: #EBE0C4
+$headingText: #4E370E
+
+$titleFont: "Raleway-Bold", sans-serif
+$mainFont: "Inter-Bold", sans-serif
+$allRecipeTitle: "inter-SemiBold", sans-serif
+
+
+@font-face
+  font-family: "Raleway-Bold"
+  src: url("./fonts/Raleway-Bold.ttf") format("truetype")
+  font-weight: bold
+  font-style: normal
+  font-display: swap 
+
+@font-face
+  font-family: "Inter-Bold"
+  src: url("./fonts/Inter_18pt-Bold.ttf") format("truetype")
+  font-style: normal
+  font-display: swap 
+
+  @font-face
+  font-family: "Inter-SemiBold"
+  src: url("./fonts/Inter_24ptSemiBold.ttf") format("truetype")
+  font-style: normal
+  font-display: swap 
+
+
+body
+  margin: 0
+  padding: 0
+  background-color: $bgColor
+  font-family: $titleFont
+
+
+.recomendation-title
+    color: $headingText
+    width: 20%
+
+.header
+  width: 100%
+  min-height: 15vh
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  gap: 20px
+  font-family: $titleFont
+//   padding-left: 10%
+  
+
+
+.search-receip-button 
+    background-color: $useThing
+    // border: 1px solid black
+    outline: none
+    padding: 10px
+    border-radius: 4px
+    cursor: pointer
+    font-size: 16px
+    font-family: $titleFont
+    
+.search-container 
+  position: relative
+  display: flex
+  align-items: center
+  width: 50%
+
+
+.search-receip-input
+  background-color: $useThing
+  position: relative
+  border: none
+  outline: none
+  width: 100%
+  font-size: 18px
+  padding: 10px 55px 10px 20px 
+  padding-left: 5%
+  border-radius: 10px
+
+.search-icon
+  position: absolute
+  left: 15px  
+  pointer-events: none  
+  width: 20px  
+  height: 20px
+  z-index: 5
+
+
+.search-result
+  padding-left: 3%
+  width: 20%
+
+
+.recomendation-title 
+    padding-left: 9%
+    margin-top: 5%
+   
+
+.recipes-day 
+    width: 100%
+    min-height: 50vh
+    display: flex
+    justify-content: center
+    gap: 30px
+    align-items: center
+    position: relative
+    overflow: hidden
+    
+
+
+    .first-recipe-day, .second-recipe-day, .third-recipe-day 
+        width: auto 
+        height: 60vh 
+        object-fit: cover 
+        opacity: 1
+        filter: brightness(70%)
+        
+
+.first-recipe-day
+    border-radius: 15px
+   
+
+.recipe-container-day
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+ 
+
+.main-text-cards
+    position: absolute
+    display: flex
+    justify-content: center
+    align-items: center
+    color: white
+    overflow-wrap: break-word
+    overflow: visible
+    width: 50%
+    font-family: $mainFont
+    
+    
+    
+
+    
+.info-text-cards
+    position: absolute
+    color: white
+    bottom: 3%
+    font-family: $mainFont
+
+.favorite-cards 
+  position: absolute
+  top: 2rem
+  right: 1rem
+  width: 25px
+  height: 25px
+  cursor: pointer
+    
+
+
+.all-recipes
+  // width: 100%
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  row-gap: 45px
+  padding: 2rem
+  justify-items: center  // Центрирует элементы по горизонтали
+  align-items: center
+  
+
+  .all-recipe-container
+    width: 85%
+    position: relative
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    color: white
+    
+
+    
+    .all-recipe-main
+      position: absolute
+      display: flex
+      justify-content: start
+      align-items: center
+      color: white
+      overflow-wrap: break-word
+      overflow: visible
+      width: 80%
+      padding: 3%
+      font-size: 22px
+      font-family:$allRecipeTitle
+      font-weight: bold
+    
+      
+
+
+    .all-recipe-time
+      position: absolute
+      bottom: 0rem
+      right: 2rem
+      // transform: translateX(-10%)
+      color: white
+      text-align: center
+      font-family:$allRecipeTitle
+      font-weight: bold
+      opacity: 0.7
+
+
+
+    .all-recipe-img
+      width: 100%
+      height: auto
+      border-radius: 12px
+      filter: brightness(80%)
+      object-fit: cover
+
+    
+
+
+      
+.all-favorite-cards 
+  position: absolute
+  bottom: 1rem
+  left: 1rem
+  width: 20px
+  height: 20px
+  cursor: pointer
+
+
+.button-filter 
+  width: 4rem
+  background-color: $useThing
+  border: none
+  border-radius: 20px
+    
+  padding: 13px
+
+  cursor: pointer
