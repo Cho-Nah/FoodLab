@@ -98,4 +98,3 @@ function Search() {
 }
 
 export default Search;
-// module.exports = Search;
