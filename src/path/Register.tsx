@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Register, RegisterForSaga } from "../app/slices/RegisterSlice";
+import { useNavigate } from "react-router-dom";
 
 import "../ModalWindow.sass";
 
@@ -12,10 +13,19 @@ function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const navigate = useNavigate();
+
   function handleButton() {
+    if (!username.trim() || !password.trim() || !email.trim()) {
+      alert("Пожалуйста, заполните все поля.");
+      return; // прерываем выполнение, если есть пустые поля
+    }
+
     dispatch(RegisterForSaga({ username, password, email }));
 
     console.log({ username }, { password }, { email });
+
+    navigate("/home");
   }
 
   return (
@@ -55,9 +65,13 @@ function Login() {
               ></input>
             </div>
 
-            <button style={{ padding: "10px" }} onClick={handleButton}>
-              Send data to back
-            </button>
+            <div className="container-buttons">
+              <button className="register-button" onClick={handleButton}>
+                Зарегаться
+              </button>
+
+              <button className="register-button">Войти</button>
+            </div>
 
             {/* <h3>Result</h3>
             <p>USer: {username}</p>

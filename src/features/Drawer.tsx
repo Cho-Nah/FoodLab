@@ -1,33 +1,8 @@
-import { useState } from "react";
-import "../Drawer.sass";
+import { useState, useEffect } from "react";
 import { FilterData } from "../app/types";
+import { getAllTags, getRecipesByTags, addMockRecipes } from "../../db";
 
-const mockRecipes: FilterData[] = [
-  {
-    id: 1,
-    name: "Картофель по-деревенски",
-    tags: ["картофель", "чеснок", "петрушка"],
-    description: "Вкусный картофель с чесноком и зеленью",
-  },
-  {
-    id: 2,
-    name: "Омлет с грибами",
-    tags: ["яйца", "шампиньоны", "молоко"],
-    description: "Пышный омлет с шампиньонами",
-  },
-  {
-    id: 3,
-    name: "Блинчики",
-    tags: ["мука", "яйца", "молоко"],
-    description: "Традиционные русские блины",
-  },
-  {
-    id: 4,
-    name: "Фаршированный перец",
-    tags: ["перец", "фарш", "рис"],
-    description: "Болгарский перец с начинкой",
-  },
-];
+import "../Drawer.sass";
 
 interface FilterModalProps {
   isOpen: boolean;
@@ -36,9 +11,18 @@ interface FilterModalProps {
 
 function FilterModal({ isOpen, onClose }: FilterModalProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
   const [filtered, setFiltered] = useState<FilterData[] | null>(null);
 
-  const allTags = Array.from(new Set(mockRecipes.flatMap((r) => r.tags)));
+  useEffect(() => {
+    const fetchTags = async () => {
+      await addMockRecipes(); // можно убрать в проде
+      const tags = await getAllTags();
+      setAllTags(tags);
+    };
+
+    fetchTags();
+  }, []);
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -51,11 +35,9 @@ function FilterModal({ isOpen, onClose }: FilterModalProps) {
     setFiltered(null);
   };
 
-  const applyFilters = () => {
-    const filteredRecipes = mockRecipes.filter((recipe) =>
-      selectedTags.every((tag) => recipe.tags.includes(tag))
-    );
-    setFiltered(filteredRecipes);
+  const applyFilters = async () => {
+    const result = await getRecipesByTags(selectedTags);
+    setFiltered(result);
   };
 
   if (!isOpen) return null;

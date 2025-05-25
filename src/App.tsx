@@ -5,8 +5,8 @@ import Auth from "./pages/AuthPage";
 function App() {
   return (
     <div>
+      <Auth />
       <HomePage />
-      {/* <Auth /> */}
     </div>
   );
 }
