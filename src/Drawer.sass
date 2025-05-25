@@ -1,18 +1,151 @@
-.drawer
+.modal-overlay
   position: fixed
   top: 0
   left: 0
-  width: 21rem
-  height: 100%
-  background: white
-  box-shadow: -2px 0 5px rgba(0,0,0,0.2)
-  padding: 20px
+  right: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, 0.5)
+  display: flex
+  justify-content: start
+  align-items: center
   z-index: 1000
+  backdrop-filter: blur(1px)
+ 
 
-.container-tags
-    display: flex
-    gap: 10px
-
-.checkbox-menu
+.modal-content
+  background: white
+  border-radius: 8px
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15)
+  width: 90%
+  max-width: 500px
+  max-height: 80vh
   display: flex
   flex-direction: column
+  overflow: hidden
+  margin-left: 13%
+
+.modal-header
+  padding: 16px 20px
+  border-bottom: 1px solid #eee
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.modal-title
+  font-size: 1.25rem
+  font-weight: 600
+  margin: 0
+  color: #333
+
+.modal-close-btn
+  background: none
+  border: none
+  font-size: 1.5rem
+  cursor: pointer
+  color: #666
+  padding: 0
+  line-height: 1
+
+.modal-body
+  padding: 20px
+  overflow-y: auto
+  flex-grow: 1
+
+.filter-section
+  margin-bottom: 16px
+
+.filter-section-header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 12px
+
+.filter-section-title
+  font-size: 1rem
+  font-weight: 500
+  margin: 0
+  color: #444
+
+.filter-reset-btn
+  background: none
+  border: none
+  color: #666
+  text-decoration: underline
+  cursor: pointer
+  font-size: 0.875rem
+  padding: 0
+
+.ingredients-list
+  display: flex
+  flex-direction: column
+  gap: 8px
+
+.ingredient-item
+  display: flex
+  align-items: center
+  cursor: pointer
+  padding: 8px 0
+  user-select: none
+
+.ingredient-checkbox
+  position: absolute
+  opacity: 0
+  height: 0
+  width: 0
+
+.custom-checkbox
+  position: relative
+  display: inline-block
+  width: 18px
+  height: 18px
+  border: 2px solid #ccc
+  border-radius: 4px
+  margin-right: 12px
+  transition: all 0.2s
+
+  &::after
+    content: ""
+    position: absolute
+    display: none
+    left: 5px
+    top: 1px
+    width: 5px
+    height: 10px
+    border: solid white
+    border-width: 0 2px 2px 0
+    transform: rotate(45deg)
+
+.ingredient-checkbox:checked ~ .custom-checkbox
+  background: #A56C37
+  border-color: #A56C37
+
+  &::after
+    display: block
+
+.ingredient-name
+  font-size: 0.9375rem
+  color: #333
+
+.modal-footer
+  padding: 16px 20px
+  border-top: 1px solid #eee
+  display: flex
+  justify-content: center
+
+.apply-filters-btn
+  background: #A56C37
+  color: white
+  border: none
+  border-radius: 4px
+  padding: 15px 24px
+  font-size: 1rem
+  font-weight: 500
+  cursor: pointer
+  transition: background 0.2s
+  width: 100%
+
+  &:hover
+    background: #b77639
+
+.modal-results 
+  padding: 10px

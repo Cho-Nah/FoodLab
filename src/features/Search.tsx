@@ -12,7 +12,7 @@ import Menu from "../path/Menu";
 import "../style.sass";
 
 import filter from "../img/filter.svg";
-import DrawerComponent from "./Drawer";
+import FilterModal from "./Drawer";
 
 function Search() {
   const result = useSelector((state: any) => state.search.ingredients);
@@ -21,6 +21,7 @@ function Search() {
 
   const [value, setValue] = useState("");
   const [isOpen, isDrawerOpen] = useState(false);
+  const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   let timeoutId: NodeJS.Timeout;
 
   useEffect(() => {
@@ -34,10 +35,18 @@ function Search() {
   return (
     <div>
       <div className="header">
-        <button className="button-filter" onClick={() => isDrawerOpen(true)}>
+        <button
+          className="button-filter"
+          onClick={() => setIsFilterModalOpen(true)}
+        >
           <img src={filter} alt="" />
         </button>
-        {isOpen && <DrawerComponent onClose={() => isDrawerOpen(false)} />}
+
+        <FilterModal
+          isOpen={isFilterModalOpen}
+          onClose={() => setIsFilterModalOpen(false)}
+        />
+
         <div className="search-container">
           <svg
             className="search-icon"
@@ -60,15 +69,6 @@ function Search() {
             onChange={(e) => setValue(e.target.value)}
             list="cities"
           />
-          {/* Выпадающий список с ингредиентами */}
-          {/* <datalist id="cities">
-            <option value="Naples" />
-            <option value="London" />
-            <option value="Berlin" />
-            <option value="New York" />
-            <option value="Frattamaggiore" />
-            <option value={recipes.ingredients}></option>
-          </datalist> */}
         </div>
 
         <button
@@ -81,7 +81,6 @@ function Search() {
           Отправить
         </button>
 
-        {/* Меню с профилем и т.д */}
         <Menu />
       </div>
 

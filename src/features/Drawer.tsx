@@ -1,122 +1,125 @@
+import { useState } from "react";
 import "../Drawer.sass";
-import favorite from "../img/favorites.svg";
 import { FilterData } from "../app/types";
-import { useState, useEffect } from "react";
 
-function DrawerComponent({ onClose }: { onClose: () => void }) {
-  const [searchItem, setSearchItem] = useState("");
+const mockRecipes: FilterData[] = [
+  {
+    id: 1,
+    name: "Картофель по-деревенски",
+    tags: ["картофель", "чеснок", "петрушка"],
+    description: "Вкусный картофель с чесноком и зеленью",
+  },
+  {
+    id: 2,
+    name: "Омлет с грибами",
+    tags: ["яйца", "шампиньоны", "молоко"],
+    description: "Пышный омлет с шампиньонами",
+  },
+  {
+    id: 3,
+    name: "Блинчики",
+    tags: ["мука", "яйца", "молоко"],
+    description: "Традиционные русские блины",
+  },
+  {
+    id: 4,
+    name: "Фаршированный перец",
+    tags: ["перец", "фарш", "рис"],
+    description: "Болгарский перец с начинкой",
+  },
+];
+
+interface FilterModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+function FilterModal({ isOpen, onClose }: FilterModalProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const [filteredData, setFilteredData] = useState<FilterData[]>([]);
+  const [filtered, setFiltered] = useState<FilterData[] | null>(null);
 
-  // useEffect(() => {
-  //   fetch("/db.json") // путь к файлу в public
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setData(json);
-  //       setFilteredData(json); // сразу показывать все данные
-  //     })
-  //     .catch((err) => console.error("Ошибка загрузки recipes.json:", err));
-  // }, []);
+  const allTags = Array.from(new Set(mockRecipes.flatMap((r) => r.tags)));
 
-  const data: FilterData[] = [
-    {
-      id: 1,
-      name: "Product 1",
-      tags: ["carrot", "milk"],
-      description: "Describtion",
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      tags: ["canabis", "shishi"],
-      description: "Yo",
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      tags: ["damn", "fuckYou"],
-      description: "No",
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      tags: ["damn", "test"],
-      description: "No",
-    },
-  ];
-
-  const allTags = Array.from(new Set(data.flatMap((item) => item.tags)));
-
-  function handleSearchChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setSearchItem(event.target.value);
-  }
-
-  function handleCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const tag = event.target.name;
+  const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
-      event.target.checked ? [...prev, tag] : prev.filter((t) => t !== tag)
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
-  }
+  };
 
-  function handleFilter() {
-    const result = data.filter((item) => {
-      const matchesSearch = searchItem
-        ? item.tags.some((tag) =>
-            tag.toLowerCase().includes(searchItem.toLowerCase())
-          )
-        : true;
-      const matchesTags = selectedTags.length
-        ? selectedTags.every((tag) => item.tags.includes(tag))
-        : true;
+  const resetFilters = () => {
+    setSelectedTags([]);
+    setFiltered(null);
+  };
 
-      return matchesSearch && matchesTags;
-    });
+  const applyFilters = () => {
+    const filteredRecipes = mockRecipes.filter((recipe) =>
+      selectedTags.every((tag) => recipe.tags.includes(tag))
+    );
+    setFiltered(filteredRecipes);
+  };
 
-    setFilteredData(result);
-  }
+  if (!isOpen) return null;
 
   return (
-    <div className="drawer">
-      <h1>Фильтрация</h1>
-      <input
-        type="text"
-        placeholder="Search.."
-        value={searchItem}
-        onChange={handleSearchChange}
-      />
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2 className="modal-title">Фильтрация рецептов</h2>
+          <button className="modal-close-btn" onClick={onClose}>
+            ×
+          </button>
+        </div>
 
-      <div className="checkbox-menu">
-        {allTags.map((tag) => (
-          <span key={tag}>
-            <input
-              type="checkbox"
-              name={tag}
-              checked={selectedTags.includes(tag)}
-              onChange={handleCheckboxChange}
-            />
-            {tag}
-          </span>
-        ))}
-      </div>
+        <div className="modal-body">
+          <div className="filter-section">
+            <div className="filter-section-header">
+              <h3 className="filter-section-title">Теги</h3>
+              <button className="filter-reset-btn" onClick={resetFilters}>
+                Сбросить
+              </button>
+            </div>
 
-      <button onClick={handleFilter}>Применить фильтр</button>
-
-      <div className="container-tags">
-        {filteredData.map((item) => (
-          <div key={item.id} className="tag-item">
-            <h3>{item.name}</h3>
-            <p>{item.description}</p>
-            <p>Tags: {item.tags.join(", ")}</p>
+            <div className="ingredients-list">
+              {allTags.map((tag) => (
+                <label key={tag} className="ingredient-item">
+                  <input
+                    type="checkbox"
+                    checked={selectedTags.includes(tag)}
+                    onChange={() => toggleTag(tag)}
+                    className="ingredient-checkbox"
+                  />
+                  <span className="custom-checkbox"></span>
+                  <span className="ingredient-name">{tag}</span>
+                </label>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
+        </div>
 
-      <button onClick={onClose}>Закрыть</button>
+        <div className="modal-footer">
+          <button className="apply-filters-btn" onClick={applyFilters}>
+            Применить фильтры
+          </button>
+        </div>
+
+        {filtered !== null && (
+          <div className="modal-results">
+            <h3>Результаты:</h3>
+            {filtered.length > 0 ? (
+              filtered.map((recipe) => (
+                <div key={recipe.id} className="recipe-card">
+                  <h4>{recipe.name}</h4>
+                  <p>{recipe.description}</p>
+                </div>
+              ))
+            ) : (
+              <p>Ничего не найдено</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
-export default DrawerComponent;
-function setData(json: any) {
-  throw new Error("Function not implemented.");
-}
+export default FilterModal;
