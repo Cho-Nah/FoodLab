@@ -6,18 +6,22 @@ import {
   setRecipes,
 } from "../app/slices/sendIngredientsSlice";
 import { RootState } from "../app/store";
+
 import Menu from "../path/Menu";
 
 import "../style.sass";
 
 import filter from "../img/filter.svg";
+import DrawerComponent from "./Drawer";
 
 function Search() {
   const result = useSelector((state: any) => state.search.ingredients);
   const dispatch = useDispatch();
-  const [value, setValue] = useState("");
-  let timeoutId: NodeJS.Timeout;
   const recipes = useSelector((state: RootState) => state.send.recipes);
+
+  const [value, setValue] = useState("");
+  const [isOpen, isDrawerOpen] = useState(false);
+  let timeoutId: NodeJS.Timeout;
 
   useEffect(() => {
     clearTimeout(timeoutId);
@@ -30,9 +34,10 @@ function Search() {
   return (
     <div>
       <div className="header">
-        <button className="button-filter">
+        <button className="button-filter" onClick={() => isDrawerOpen(true)}>
           <img src={filter} alt="" />
         </button>
+        {isOpen && <DrawerComponent onClose={() => isDrawerOpen(false)} />}
         <div className="search-container">
           <svg
             className="search-icon"

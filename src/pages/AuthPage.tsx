@@ -1,4 +1,4 @@
-import AuthPage from "../components/Auth";
+import AuthPage from "../features/Auth";
 
 function Auth() {
   return (

@@ -13,9 +13,7 @@ import "../style.sass";
 function AllRecipes() {
   return (
     <div>
-      <h1 style={{ marginTop: "5%", paddingLeft: "5%", width: "20%" }}>
-        Все рецепты
-      </h1>
+      <h1 className="all-recipes-title">Все рецепты</h1>
 
       <div className="all-recipes">
         <div className="all-recipe-container">

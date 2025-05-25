@@ -1,5 +1,5 @@
-import Recomendation from "../components/Recomendations";
-import Search from "../components/Search";
+import Recomendation from "../features/Recomendations";
+import Search from "../features/Search";
 
 function HomePage() {
   return (

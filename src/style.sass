@@ -1,4 +1,4 @@
-$bgColor: #F3E8D4
+$bgColor: #ffffff
 $useThing: #EBE0C4
 $headingText: #4E370E
 
@@ -36,7 +36,7 @@ body
 
 .recomendation-title
     color: $headingText
-    width: 20%
+    width: clamp(200px, 30%, 400px)
 
 .header
   width: 100%
@@ -57,7 +57,7 @@ body
     padding: 10px
     border-radius: 4px
     cursor: pointer
-    font-size: 16px
+    font-size: clamp(14px, 1.5vw, 18px);
     font-family: $titleFont
     
 .search-container 
@@ -73,7 +73,7 @@ body
   border: none
   outline: none
   width: 100%
-  font-size: 18px
+  font-size: clamp(14px, 1.5vw, 18px)
   padding: 10px 55px 10px 20px 
   padding-left: 5%
   border-radius: 10px
@@ -111,7 +111,7 @@ body
 
     .first-recipe-day, .second-recipe-day, .third-recipe-day 
         width: auto 
-        height: 60vh 
+        height: clamp(250px, 50vh, 500px)
         object-fit: cover 
         opacity: 1
         filter: brightness(70%)
@@ -163,14 +163,15 @@ body
   // width: 100%
   display: grid
   grid-template-columns: repeat(4, 1fr)
-  row-gap: 45px
-  padding: 2rem
-  justify-items: center  // Центрирует элементы по горизонтали
+  row-gap: 40px
+  padding: 2rem 5rem 5rem 5rem
+  justify-items: center  
   align-items: center
-  
+
+
 
   .all-recipe-container
-    width: 85%
+    width: 75%
     position: relative
     display: flex
     flex-direction: column
@@ -189,7 +190,7 @@ body
       overflow: visible
       width: 80%
       padding: 3%
-      font-size: 22px
+      font-size: clamp(16px, 1.5vw, 22px)
       font-family:$allRecipeTitle
       font-weight: bold
     
@@ -238,3 +239,10 @@ body
   padding: 13px
 
   cursor: pointer
+
+.all-recipes-title
+  margin-top: 4rem
+  padding-left: 5rem
+  font-size: clamp(20px, 2vw, 28px)
+  color: $headingText
+  font-family: $titleFont

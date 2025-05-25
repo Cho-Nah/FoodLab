@@ -8,3 +8,10 @@ export interface Recipe {
 export interface SendState {
   recipes: any[];
 }
+
+export interface FilterData {
+  id: number;
+  tags: string[];
+  name: string;
+  description: string;
+}
