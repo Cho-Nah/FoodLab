@@ -16,7 +16,7 @@ function FilterModal({ isOpen, onClose }: FilterModalProps) {
 
   useEffect(() => {
     const fetchTags = async () => {
-      await addMockRecipes(); // можно убрать в проде
+      await addMockRecipes();
       const tags = await getAllTags();
       setAllTags(tags);
     };

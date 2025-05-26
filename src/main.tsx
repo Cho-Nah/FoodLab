@@ -8,10 +8,12 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 
 import Auth from "./features/Auth";
+import { AccountPage } from "./pages/AccountPage";
 
 const router = createBrowserRouter([
   { path: "/", element: <Auth /> },
   { path: "/home", element: <HomePage /> },
+  { path: "/account", element: <AccountPage /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
