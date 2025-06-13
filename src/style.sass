@@ -1,11 +1,12 @@
-$bgColor: #ffffff
+$bgColor: #f8f5f0
 $useThing: #EBE0C4
 $headingText: #4E370E
+$accentColor: #D4A762
+$textColor: #333333
 
 $titleFont: "Raleway-Bold", sans-serif
 $mainFont: "Inter-Bold", sans-serif
-$allRecipeTitle: "inter-SemiBold", sans-serif
-
+$allRecipeTitle: "Inter-SemiBold", sans-serif
 
 @font-face
   font-family: "Raleway-Bold"
@@ -20,229 +21,253 @@ $allRecipeTitle: "inter-SemiBold", sans-serif
   font-style: normal
   font-display: swap 
 
-  @font-face
+@font-face
   font-family: "Inter-SemiBold"
   src: url("./fonts/Inter_24ptSemiBold.ttf") format("truetype")
   font-style: normal
   font-display: swap 
-
 
 body
   margin: 0
   padding: 0
   background-color: $bgColor
   font-family: $titleFont
-
-
-.recomendation-title
-    color: $headingText
-    width: clamp(200px, 30%, 400px)
+  color: $textColor
 
 .header
   width: 100%
   min-height: 15vh
   display: flex
-  justify-content: flex-end
+  justify-content: space-between
   align-items: center
-  gap: 20px
-  font-family: $titleFont
-//   padding-left: 10%
-  
+  // padding: 0 0.5%
+  background-color: white
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1)
+  position: relative
+  z-index: 10
 
-
-.search-receip-button 
-    background-color: $useThing
-    // border: 1px solid black
-    outline: none
-    padding: 10px
-    border-radius: 4px
-    cursor: pointer
-    font-size: clamp(14px, 1.5vw, 18px);
-    font-family: $titleFont
-    
 .search-container 
   position: relative
   display: flex
   align-items: center
   width: 50%
-
+  max-width: 600px
 
 .search-receip-input
   background-color: $useThing
-  position: relative
   border: none
   outline: none
   width: 100%
   font-size: clamp(14px, 1.5vw, 18px)
-  padding: 10px 55px 10px 20px 
-  padding-left: 5%
-  border-radius: 10px
+  padding: 12px 55px 12px 50px 
+  border-radius: 30px
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1)
+  transition: all 0.3s ease
+  &:focus
+    box-shadow: 0 2px 15px rgba(212, 167, 98, 0.3)
 
 .search-icon
   position: absolute
-  left: 15px  
-  pointer-events: none  
-  width: 20px  
-  height: 20px
+  left: 20px  
+  width: 22px  
+  height: 22px
   z-index: 5
+  opacity: 0.7
 
+.search-receip-button 
+  background-color: $accentColor
+  color: white
+  border: none
+  padding: 12px 25px
+  border-radius: 30px
+  cursor: pointer
+  font-size: clamp(14px, 1.5vw, 18px)
+  font-family: $titleFont
+  transition: all 0.3s ease
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1)
+  &:hover
+    background-color: darken($accentColor, 10%)
+    transform: translateY(-2px)
 
-.search-result
-  padding-left: 3%
-  width: 20%
-
-
-.recomendation-title 
-    padding-left: 9%
-    margin-top: 5%
-   
+.recomendation-title
+  color: $headingText
+  width: clamp(200px, 30%, 400px)
+  font-size: clamp(24px, 3vw, 36px)
+  margin: 40px 0 20px 9%
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    bottom: -10px
+    left: 0
+    width: 60px
+    height: 4px
+    background-color: $accentColor
+    border-radius: 2px
 
 .recipes-day 
-    width: 100%
-    min-height: 50vh
-    display: flex
-    justify-content: center
-    gap: 30px
-    align-items: center
-    position: relative
-    overflow: hidden
-    
-
-
-    .first-recipe-day, .second-recipe-day, .third-recipe-day 
-        width: auto 
-        height: clamp(250px, 50vh, 500px)
-        object-fit: cover 
-        opacity: 1
-        filter: brightness(70%)
-        
-
-.first-recipe-day
-    border-radius: 15px
-   
+  width: 100%
+  min-height: 60vh
+  display: flex
+  justify-content: center
+  gap: 30px
+  align-items: center
+  background: linear-gradient(to bottom, $bgColor 0%, white 100%)
 
 .recipe-container-day
-    position: relative
-    display: flex
-    justify-content: center
-    align-items: center
- 
+  position: relative
+  display: flex
+  justify-content: center
+  align-items: center
+  height: clamp(250px, 50vh, 500px)
+  width: 30%
+  min-width: 250px
+  border-radius: 15px
+  overflow: hidden
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15)
+  transition: all 0.4s ease
+  &:hover
+    transform: translateY(-10px)
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2)
+    .first-recipe-day, .second-recipe-day, .third-recipe-day
+      transform: scale(1.05)
+
+.first-recipe-day, .second-recipe-day, .third-recipe-day
+  width: 100%
+  height: 100%
+  object-fit: cover 
+  transition: all 0.4s ease
+  filter: brightness(80%)
+
+
+.recipe-img 
+  width: 100%
+  height: 100%
+  object-fit: cover
+  transition: all 0.4s ease
+  filter: brightness(80%)
+
 
 .main-text-cards
-    position: absolute
-    display: flex
-    justify-content: center
-    align-items: center
-    color: white
-    overflow-wrap: break-word
-    overflow: visible
-    width: 50%
-    font-family: $mainFont
-    
-    
-    
+  position: absolute
+  color: white
+  width: 80%
+  text-align: center
+  font-size: clamp(18px, 2vw, 28px)
+  text-shadow: 0 2px 5px rgba(0,0,0,0.3)
+  font-weight: bold
+  line-height: 1.3
 
-    
 .info-text-cards
-    position: absolute
-    color: white
-    bottom: 3%
-    font-family: $mainFont
+  position: absolute
+  color: white
+  bottom: 5%
+  font-size: clamp(14px, 1.5vw, 18px)
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3)
+  background-color: rgba($accentColor, 0.8)
+  padding: 5px 15px
+  border-radius: 20px
 
 .favorite-cards 
   position: absolute
-  top: 2rem
+  top: 1.5rem
+  right: 1.5rem
+  width: 30px
+  height: 30px
+  cursor: pointer
+  transition: all 0.3s ease
+  &:hover
+    transform: scale(1.1)
+
+.all-recipes-title
+  margin-top: 60px
+  padding-left: 9%
+  font-size: clamp(24px, 3vw, 36px)
+  color: $headingText
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    bottom: -10px
+    left: 9%
+    width: 60px
+    height: 4px
+    background-color: $accentColor
+    border-radius: 2px
+
+.all-recipes
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr))
+  gap: 30px
+  padding: 3rem 9%
+  background-color: white
+
+.all-recipe-container
+  width: 100%
+  position: relative
+  border-radius: 12px
+  overflow: hidden
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1)
+  transition: all 0.3s ease
+  aspect-ratio: 3/4
+  &:hover
+    transform: translateY(-5px)
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15)
+    .all-recipe-img
+      transform: scale(1.05)
+
+.all-recipe-img
+  width: 100%
+  height: 100%
+  object-fit: cover
+  transition: all 0.4s ease
+  filter: brightness(85%)
+
+.all-recipe-main
+  position: absolute
+  bottom: 60px
+  left: 0
+  width: 100%
+  padding: 20px
+  font-size: clamp(16px, 1.5vw, 20px)
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5)
+  line-height: 1.3
+  color: white
+
+.all-recipe-time
+  position: absolute
+  bottom: 20px
+  left: 20px
+  background-color: rgba(white, 0.9)
+  color: $textColor
+  padding: 5px 12px
+  border-radius: 20px
+  font-size: 14px
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+
+.all-favorite-cards 
+  position: absolute
+  top: 1rem
   right: 1rem
   width: 25px
   height: 25px
   cursor: pointer
-    
-
-
-.all-recipes
-  // width: 100%
-  display: grid
-  grid-template-columns: repeat(4, 1fr)
-  row-gap: 40px
-  padding: 2rem 5rem 5rem 5rem
-  justify-items: center  
-  align-items: center
-
-
-
-  .all-recipe-container
-    width: 75%
-    position: relative
-    display: flex
-    flex-direction: column
-    align-items: flex-start
-    color: white
-    
-
-    
-    .all-recipe-main
-      position: absolute
-      display: flex
-      justify-content: start
-      align-items: center
-      color: white
-      overflow-wrap: break-word
-      overflow: visible
-      width: 80%
-      padding: 3%
-      font-size: clamp(16px, 1.5vw, 22px)
-      font-family:$allRecipeTitle
-      font-weight: bold
-    
-      
-
-
-    .all-recipe-time
-      position: absolute
-      bottom: 0rem
-      right: 2rem
-      // transform: translateX(-10%)
-      color: white
-      text-align: center
-      font-family:$allRecipeTitle
-      font-weight: bold
-      opacity: 0.7
-
-
-
-    .all-recipe-img
-      width: 100%
-      height: auto
-      border-radius: 12px
-      filter: brightness(80%)
-      object-fit: cover
-
-    
-
-
-      
-.all-favorite-cards 
-  position: absolute
-  bottom: 1rem
-  left: 1rem
-  width: 20px
-  height: 20px
-  cursor: pointer
-
+  transition: all 0.3s ease
+  &:hover
+    transform: scale(1.1)
 
 .button-filter 
-  width: 4rem
-  background-color: $useThing
+  background-color: $accentColor
+  color: white
   border: none
-  border-radius: 20px
-    
-  padding: 13px
-
+  border-radius: 30px
+  padding: 12px 20px
   cursor: pointer
-
-.all-recipes-title
-  margin-top: 4rem
-  padding-left: 5rem
-  font-size: clamp(20px, 2vw, 28px)
-  color: $headingText
-  font-family: $titleFont
+  font-family: $mainFont
+  transition: all 0.3s ease
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1)
+  margin-left: 10px
+  
+  &:hover
+    background-color: darken($accentColor, 10%)
+    transform: translateY(-2px)

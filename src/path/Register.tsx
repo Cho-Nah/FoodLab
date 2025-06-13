@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Register, RegisterForSaga } from "../app/slices/RegisterSlice";
+import { Register } from "../app/slices/RegisterSlice";
 import { useNavigate } from "react-router-dom";
 
 import "../ModalWindow.sass";
@@ -18,10 +18,10 @@ function Login() {
   function handleButton() {
     if (!username.trim() || !password.trim() || !email.trim()) {
       alert("Пожалуйста, заполните все поля.");
-      return; // прерываем выполнение, если есть пустые поля
+      return;
     }
 
-    dispatch(RegisterForSaga({ username, password, email }));
+    dispatch(Register({ username, password, email }));
 
     console.log({ username }, { password }, { email });
 

@@ -1,155 +1,209 @@
 // Account.sass
+$bgColor: #f8f5f0
+$accentColor: #D4A762
+$headingText: #4E370E
+$textColor: #5a4a42
+$lightBorder: #e0d6cc
+$cardBg: #ffffff
 
 .profile-page
-  font-family: 'Arial', sans-serif
-  max-width: 1000px
+  font-family: 'Inter-SemiBold', sans-serif
+  max-width: 1200px
   margin: 0 auto
-  padding: 2rem
-  color: #5a4a42
-  background-color: #f9f5f0
+  padding: 2rem 5%
+  color: $textColor
+  background-color: $bgColor
 
   &__header
     display: flex
     align-items: center
     gap: 2rem
-    margin-bottom: 2rem
-    padding-bottom: 1.5rem
-    border-bottom: 1px solid #e0d6cc
+    margin-bottom: 3rem
+    padding-bottom: 2rem
+    border-bottom: 1px solid $lightBorder
+    @media (max-width: 768px)
+      flex-direction: column
+      text-align: center
 
   &__avatar
-    width: 100px
-    height: 100px
+    width: 120px
+    height: 120px
     border-radius: 50%
     object-fit: cover
-    border: 3px solid #d4b78f
-    background-color: #fff
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+    border: 4px solid $accentColor
+    background-color: $cardBg
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1)
+    transition: transform 0.3s ease
+    &:hover
+      transform: scale(1.05)
 
   &__user-info
     flex: 1
 
   &__title
-    font-size: 2rem
-    color: #4a3a32
+    font-size: 2.2rem
+    color: $headingText
     margin-bottom: 0.5rem
+    font-family: 'Raleway-Bold', sans-serif
+    position: relative
+    display: inline-block
+    &:after
+      content: ''
+      position: absolute
+      bottom: -8px
+      left: 0
+      width: 50px
+      height: 3px
+      background-color: $accentColor
+      border-radius: 2px
 
   &__subtitle
-    font-size: 1rem
-    color: #7d6d65
-    margin-bottom: 0.5rem
+    font-size: 1.1rem
+    color: lighten($textColor, 15%)
+    margin-bottom: 1rem
+    font-family: 'Inter-SemiBold', sans-serif
 
   &__stats
     display: flex
-    gap: 1.5rem
-    margin-top: 1rem
+    gap: 2rem
+    margin-top: 1.5rem
+    @media (max-width: 480px)
+      justify-content: center
+      flex-wrap: wrap
 
   &__stat
     text-align: center
-
     &-value
-      font-size: 1.2rem
+      font-size: 1.4rem
       font-weight: bold
-      color: #8b7355
-
+      color: $accentColor
+      font-family: 'Raleway-Bold', sans-serif
     &-label
-      font-size: 0.8rem
-      color: #7d6d65
+      font-size: 0.9rem
+      color: lighten($textColor, 15%)
+      text-transform: uppercase
+      letter-spacing: 0.5px
 
   &__content
     display: grid
-    grid-template-columns: 300px 1fr
-    gap: 2rem
-
-    @media (max-width: 768px)
+    grid-template-columns: 280px 1fr
+    gap: 2.5rem
+    @media (max-width: 900px)
       grid-template-columns: 1fr
 
   &__sidebar
     display: flex
     flex-direction: column
-    gap: 1.5rem
+    gap: 2rem
 
   &__main
     display: flex
     flex-direction: column
-    gap: 1.5rem
+    gap: 2rem
 
   &__card
-    background-color: #fff
-    border-radius: 8px
-    padding: 1.5rem
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
-    border: 1px solid #e0d6cc
+    background-color: $cardBg
+    border-radius: 12px
+    padding: 1.8rem
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08)
+    border: none
+    transition: transform 0.3s ease, box-shadow 0.3s ease
+    &:hover
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12)
 
     &-title
-      font-size: 1.3rem
-      color: #5a4a42
-      margin-bottom: 1rem
-      padding-bottom: 0.5rem
-      border-bottom: 1px solid #e0d6cc
+      font-size: 1.4rem
+      color: $headingText
+      margin-bottom: 1.5rem
+      padding-bottom: 0.8rem
+      border-bottom: 2px solid $lightBorder
+      font-family: 'Raleway-Bold', sans-serif
+      position: relative
+      &:after
+        content: ''
+        position: absolute
+        bottom: -2px
+        left: 0
+        width: 40px
+        height: 2px
+        background-color: $accentColor
 
   &__about
-    line-height: 1.6
-    color: #5a4a42
+    line-height: 1.7
+    color: $textColor
+    font-size: 1.05rem
 
   &__favorites
     display: grid
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
-    gap: 1.5rem
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr))
+    gap: 1.8rem
+    @media (max-width: 600px)
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))
 
   &__recipe
-    border: 1px solid #e0d6cc
-    border-radius: 8px
+    border: 1px solid $lightBorder
+    border-radius: 10px
     overflow: hidden
     transition: transform 0.3s ease, box-shadow 0.3s ease
-
+    background-color: $cardBg
     &:hover
-      transform: translateY(-5px)
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1)
+      transform: translateY(-8px)
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15)
 
     &-image
       width: 100%
-      height: 150px
+      height: 160px
       object-fit: cover
-      background-color: #f0e6dc
+      background: linear-gradient(45deg, $lightBorder, #f0e6dc)
 
     &-info
-      padding: 1rem
+      padding: 1.2rem
 
     &-title
-      font-size: 1rem
-      color: #4a3a32
-      margin-bottom: 0.5rem
+      font-size: 1.1rem
+      color: $headingText
+      margin-bottom: 0.8rem
       font-weight: bold
+      font-family: 'Inter-SemiBold', sans-serif
+      line-height: 1.4
 
     &-meta
       display: flex
       justify-content: space-between
-      font-size: 0.8rem
-      color: #7d6d65
+      font-size: 0.85rem
+      color: lighten($textColor, 15%)
+      span:last-child
+        color: $accentColor
+        font-weight: bold
 
   &__actions
     display: flex
-    gap: 1rem
-    margin-top: 1rem
+    gap: 1.2rem
+    margin-top: 1.5rem
+    @media (max-width: 480px)
+      flex-direction: column
 
   &__button
-    padding: 0.7rem 1.5rem
+    padding: 0.8rem 1.8rem
     border: none
-    border-radius: 4px
+    border-radius: 30px
     font-size: 1rem
     cursor: pointer
     transition: all 0.3s ease
+    font-family: 'Inter-SemiBold', sans-serif
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1)
+    &:hover
+      transform: translateY(-3px)
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2)
 
     &--primary
-      background-color: #a78a6d
+      background-color: $accentColor
       color: white
-
       &:hover
-        background-color: #8b7355
+        background-color: darken($accentColor, 8%)
 
     &--secondary
-      background-color: #e0d6cc
-      color: #5a4a42
-
+      background-color: $lightBorder
+      color: $textColor
       &:hover
-        background-color: #d0c6bc
+        background-color: darken($lightBorder, 5%)

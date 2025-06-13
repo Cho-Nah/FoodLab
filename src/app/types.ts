@@ -15,3 +15,23 @@ export interface FilterData {
   name: string;
   description: string;
 }
+
+export interface User {
+  username: string;
+  password: string;
+  email: string;
+}
+
+export interface RecipeOfDay {
+  id: number;
+  title: string;
+  info: string;
+  isFavorite: boolean;
+}
+
+export interface AllRecipes {
+  id: number;
+  title: string;
+  time: number;
+  isFavorite: false;
+}

@@ -6,30 +6,29 @@
   bottom: 0
   background-color: rgba(0, 0, 0, 0.5)
   display: flex
-  justify-content: start
+  justify-content: center
   align-items: center
   z-index: 1000
-  backdrop-filter: blur(1px)
- 
+  backdrop-filter: blur(2px)
 
 .modal-content
-  background: white
-  border-radius: 8px
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15)
+  background: #fff
+  border-radius: 12px
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2)
   width: 90%
   max-width: 500px
   max-height: 80vh
   display: flex
   flex-direction: column
   overflow: hidden
-  margin-right: 45%
 
 .modal-header
-  padding: 16px 20px
-  border-bottom: 1px solid #eee
+  padding: 20px
+  border-bottom: 1px solid #f0f0f0
   display: flex
   justify-content: space-between
   align-items: center
+  background: #f9f9f9
 
 .modal-title
   font-size: 1.25rem
@@ -45,6 +44,10 @@
   color: #666
   padding: 0
   line-height: 1
+  transition: color 0.2s
+
+  &:hover
+    color: #333
 
 .modal-body
   padding: 20px
@@ -52,16 +55,16 @@
   flex-grow: 1
 
 .filter-section
-  margin-bottom: 16px
+  margin-bottom: 20px
 
 .filter-section-header
   display: flex
   justify-content: space-between
   align-items: center
-  margin-bottom: 12px
+  margin-bottom: 16px
 
 .filter-section-title
-  font-size: 1rem
+  font-size: 1.1rem
   font-weight: 500
   margin: 0
   color: #444
@@ -69,23 +72,32 @@
 .filter-reset-btn
   background: none
   border: none
-  color: #666
+  color: #a56c37
   text-decoration: underline
   cursor: pointer
-  font-size: 0.875rem
+  font-size: 0.9rem
   padding: 0
+  transition: color 0.2s
+
+  &:hover
+    color: #8a5a2e
 
 .ingredients-list
   display: flex
   flex-direction: column
-  gap: 8px
+  gap: 12px
 
 .ingredient-item
   display: flex
   align-items: center
   cursor: pointer
-  padding: 8px 0
+  padding: 8px 12px
   user-select: none
+  border-radius: 6px
+  transition: background 0.2s
+
+  &:hover
+    background: #f5f5f5
 
 .ingredient-checkbox
   position: absolute
@@ -96,10 +108,10 @@
 .custom-checkbox
   position: relative
   display: inline-block
-  width: 18px
-  height: 18px
-  border: 2px solid #ccc
-  border-radius: 4px
+  width: 20px
+  height: 20px
+  border: 2px solid #ddd
+  border-radius: 6px
   margin-right: 12px
   transition: all 0.2s
 
@@ -107,8 +119,8 @@
     content: ""
     position: absolute
     display: none
-    left: 5px
-    top: 1px
+    left: 6px
+    top: 2px
     width: 5px
     height: 10px
     border: solid white
@@ -116,36 +128,66 @@
     transform: rotate(45deg)
 
 .ingredient-checkbox:checked ~ .custom-checkbox
-  background: #A56C37
-  border-color: #A56C37
+  background: #a56c37
+  border-color: #a56c37
 
   &::after
     display: block
 
 .ingredient-name
-  font-size: 0.9375rem
+  font-size: 1rem
   color: #333
 
 .modal-footer
   padding: 16px 20px
-  border-top: 1px solid #eee
+  border-top: 1px solid #f0f0f0
   display: flex
   justify-content: center
+  background: #f9f9f9
 
 .apply-filters-btn
-  background: #A56C37
+  background: #a56c37
   color: white
   border: none
-  border-radius: 4px
-  padding: 15px 24px
+  border-radius: 8px
+  padding: 12px 24px
   font-size: 1rem
   font-weight: 500
   cursor: pointer
-  transition: background 0.2s
+  transition: all 0.2s
   width: 100%
+  box-shadow: 0 2px 8px rgba(165, 108, 55, 0.3)
 
   &:hover
     background: #b77639
+    transform: translateY(-1px)
+    box-shadow: 0 4px 12px rgba(165, 108, 55, 0.4)
 
-.modal-results 
-  padding: 10px
+  &:active
+    transform: translateY(0)
+    box-shadow: 0 2px 6px rgba(165, 108, 55, 0.3)
+
+.modal-results
+  padding: 20px
+  border-top: 1px solid #f0f0f0
+
+  h3
+    margin-top: 0
+    color: #444
+    font-size: 1.1rem
+
+.recipe-card
+  background: #f9f9f9
+  border-radius: 8px
+  padding: 16px
+  margin-bottom: 12px
+
+  h4
+    margin: 0 0 8px 0
+    color: #333
+    font-size: 1rem
+
+  p
+    margin: 0
+    color: #666
+    font-size: 0.9rem

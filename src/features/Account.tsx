@@ -1,18 +1,21 @@
 // Account.jsx
 import "../Account.sass";
+import { useSelector } from "react-redux";
 
 export function Account() {
+  const user = useSelector((state: any) => state.register);
+
   // Пример данных пользователя
-  const user = {
-    name: "Анна Поварова",
-    username: "@annachef",
-    bio: "Люблю готовить итальянскую и французскую кухню. Автор 25 рецептов на нашем сайте.",
-    stats: {
-      recipes: 25,
-      favorites: 47,
-      followers: 1280,
-    },
-  };
+  // const user = {
+  //   name: "Анна Поварова",
+  //   username: "@annachef",
+  //   bio: "Люблю готовить итальянскую и французскую кухню. Автор 25 рецептов на нашем сайте.",
+  //   stats: {
+  //     recipes: 25,
+  //     favorites: 47,
+  //     followers: 1280,
+  //   },
+  // };
 
   // Пример избранных рецептов
   const favoriteRecipes = [
@@ -65,25 +68,27 @@ export function Account() {
       <header className="profile-page__header">
         <div className="profile-page__avatar"></div>
         <div className="profile-page__user-info">
-          <h1 className="profile-page__title">{user.name}</h1>
-          <p className="profile-page__subtitle">{user.username}</p>
-          <p className="profile-page__about">{user.bio}</p>
+          <h1 className="profile-page__title">{user.username}</h1>
+          <p className="profile-page__subtitle">{user.email}</p>
+
+          <p className="profile-page__about">{user.email}</p>
+
           <div className="profile-page__stats">
             <div className="profile-page__stat">
               <div className="profile-page__stat-value">
-                {user.stats.recipes}
+                {/* {user.stats.recipes} */}
               </div>
               <div className="profile-page__stat-label">Рецептов</div>
             </div>
             <div className="profile-page__stat">
               <div className="profile-page__stat-value">
-                {user.stats.favorites}
+                {/* {user.stats.favorites} */}
               </div>
               <div className="profile-page__stat-label">В избранном</div>
             </div>
             <div className="profile-page__stat">
               <div className="profile-page__stat-value">
-                {user.stats.followers}
+                {/* {user.stats.followers} */}
               </div>
               <div className="profile-page__stat-label">Подписчиков</div>
             </div>
