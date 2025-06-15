@@ -28,21 +28,21 @@ function recipeOfDay() {
       id: 1,
       title: "Запеканка за 5 минут",
       info: "info-text-cards",
-      isFavorite: false,
+      // isFavorite: true,
     },
 
     {
       id: 2,
       title: "Рыба по флотски",
       info: "info-text-cards",
-      isFavorite: false,
+      // isFavorite: false,
     },
 
     {
       id: 3,
       title: "Нутовое пюре с хумусом",
       info: "info-text-cards",
-      isFavorite: false,
+      // isFavorite: false,
     },
   ];
 

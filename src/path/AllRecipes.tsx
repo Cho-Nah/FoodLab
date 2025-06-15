@@ -9,70 +9,94 @@ import fourthAllRecipe from "../img/all-recipe-fourth-img.svg";
 
 import { AllRecipes } from "../app/types";
 
-import favorite from "../img/favorites.svg";
+import favoriteImg from "../img/favorites.svg";
+import favoriteActiveImg from "../img/active-favorite.svg";
+
 import "../style.sass";
 
-function AllRecipes() {
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addOrRemoveFavorite } from "../app/slices/Favorite";
+
+function allRecipes() {
+  function handleFavorite(recipe: AllRecipes) {
+    dispatch(addOrRemoveFavorite(recipe));
+  }
+
+  const dispatch = useDispatch();
   const favorites = useSelector((state: any) => state.favorite);
 
-
   const mockAllRecipes: AllRecipes[] = [
-    {
-      id: 1,
-      title: "Спагетти с индейкой по скуфски",
-      time: 30,
-      isFavorite: false,
-    },
-
-    {
-      id: 2,
-      title: "Спагетти с индейкой по скуфски",
-      time: 30,
-      isFavorite: false,
-    },
-
-    {
-      id: 3,
-      title: "Спагетти с индейкой по скуфски",
-      time: 30,
-      isFavorite: false,
-    },
-
     {
       id: 4,
       title: "Спагетти с индейкой по скуфски",
       time: 30,
       isFavorite: false,
+      info: "",
     },
-
     {
       id: 5,
       title: "Спагетти с индейкой по скуфски",
       time: 30,
       isFavorite: false,
+      info: "",
     },
-
     {
       id: 6,
       title: "Спагетти с индейкой по скуфски",
       time: 30,
       isFavorite: false,
+      info: "",
+    },
+    {
+      id: 7,
+      title: "Спагетти с индейкой по скуфски",
+      time: 30,
+      isFavorite: false,
+      info: "",
+    },
+    {
+      id: 8,
+      title: "Спагетти с индейкой по скуфски",
+      time: 30,
+      isFavorite: false,
+      info: "",
+    },
+    {
+      id: 9,
+      title: "Спагетти с индейкой по скуфски",
+      time: 30,
+      isFavorite: false,
+      info: "",
+    },
+
+    {
+      id: 10,
+      title: "Спагетти с индейкой по скуфски",
+      time: 10,
+      isFavorite: false,
+      info: "",
+    },
+
+    {
+      id: 11,
+      title: "Спагетти с индейкой по скуфски",
+      time: 30,
+      isFavorite: false,
+      info: "",
     },
   ];
 
-
-  
-  const recipeImages = {
-    1: firstAllRecipe,
-    2: secondAllRecipe,
-    3: thirdAllRecipe,
-    4: fourthAllRecipe,
-    5: fifthAllRecipe,
-    6: sixthAllRecipe,
-    7: seventhAllRecipe,
-    8: eigthAllRecipe,
+  const recipeImages: { [key: number]: string } = {
+    4: firstAllRecipe,
+    5: secondAllRecipe,
+    6: thirdAllRecipe,
+    7: fourthAllRecipe,
+    8: fifthAllRecipe,
+    9: sixthAllRecipe,
+    10: seventhAllRecipe,
+    11: eigthAllRecipe,
   };
-
 
   return (
     <div>
@@ -83,19 +107,28 @@ function AllRecipes() {
           const isInFavorites = favorites.some(
             (fav: AllRecipes) => fav.id === recipe.id
           );
-        
 
-        return (
-          <div className="all-recipe-container">
-          <img src={firstAllRecipe} className="all-recipe-img" alt="" />
-          <p className="all-recipe-main">Спагетти с индейкой по скуфски</p>
-          <p className="all-recipe-time">30 мин</p>
-          <img src={favorite} className="all-favorite-cards" alt="" />
-        </div>
-        </div>
-        )
-      })
+          return (
+            <div key={recipe.id} className="all-recipe-container">
+              <img
+                src={recipeImages[recipe.id] || firstAllRecipe}
+                className="all-recipe-img"
+                alt={recipe.title}
+              />
+              <p className="all-recipe-main">{recipe.title}</p>
+              <p className="all-recipe-time">{recipe.time} мин</p>
+              <img
+                src={isInFavorites ? favoriteActiveImg : favoriteImg}
+                className="favorite-cards"
+                alt="favorite"
+                onClick={() => handleFavorite(recipe)}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
-export default AllRecipes;
+export default allRecipes;

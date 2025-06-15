@@ -7,12 +7,12 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 
-import Auth from "./features/Auth";
+// import Auth from "./features/Auth";
 import { AccountPage } from "./pages/AccountPage";
 
 const router = createBrowserRouter([
-  { path: "/", element: <Auth /> },
-  { path: "/home", element: <HomePage /> },
+  // { path: "/", element: <Auth /> },
+  { path: "/", element: <HomePage /> },
   { path: "/account", element: <AccountPage /> },
 ]);
 

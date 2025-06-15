@@ -1,95 +1,50 @@
-// Account.jsx
 import "../Account.sass";
 import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import { getUserFromIndexedDB } from "../../User";
 
 export function Account() {
   const user = useSelector((state: any) => state.register);
+  const favoriteRecipes = useSelector((state: any) => state.favorite);
 
-  // Пример данных пользователя
-  // const user = {
-  //   name: "Анна Поварова",
-  //   username: "@annachef",
-  //   bio: "Люблю готовить итальянскую и французскую кухню. Автор 25 рецептов на нашем сайте.",
-  //   stats: {
-  //     recipes: 25,
-  //     favorites: 47,
-  //     followers: 1280,
-  //   },
-  // };
+  const [username, setUsername] = useState(user?.username || "Гость");
+  const [email, setEmail] = useState(user?.email || "email не указан");
 
-  // Пример избранных рецептов
-  const favoriteRecipes = [
-    {
-      id: 1,
-      title: "Паста Карбонара",
-      time: "25 мин",
-      likes: "128",
-      image: "",
-    },
-    {
-      id: 2,
-      title: "Тирамису классический",
-      time: "45 мин",
-      likes: "215",
-      image: "",
-    },
-    {
-      id: 3,
-      title: "Рататуй по-провански",
-      time: "60 мин",
-      likes: "89",
-      image: "",
-    },
-    {
-      id: 4,
-      title: "Крем-суп из тыквы",
-      time: "30 мин",
-      likes: "156",
-      image: "",
-    },
-    {
-      id: 5,
-      title: "Фокачча с розмарином",
-      time: "90 мин",
-      likes: "72",
-      image: "",
-    },
-    {
-      id: 6,
-      title: "Чизкейк Нью-Йорк",
-      time: "120 мин",
-      likes: "310",
-      image: "",
-    },
-  ];
+  useEffect(() => {
+    if (!user?.username) {
+      getUserFromIndexedDB()
+        .then((dbUser) => {
+          if (dbUser) {
+            setUsername(dbUser.username);
+            setEmail(dbUser.email);
+          }
+        })
+        .catch((error) => {
+          console.error("Ошибка при получении пользователя:", error);
+        });
+    }
+  }, [user]);
 
   return (
     <div className="profile-page">
       <header className="profile-page__header">
         <div className="profile-page__avatar"></div>
         <div className="profile-page__user-info">
-          <h1 className="profile-page__title">{user.username}</h1>
-          <p className="profile-page__subtitle">{user.email}</p>
-
-          <p className="profile-page__about">{user.email}</p>
+          <h1 className="profile-page__title">{username}</h1>
+          <p className="profile-page__subtitle">{email}</p>
 
           <div className="profile-page__stats">
             <div className="profile-page__stat">
-              <div className="profile-page__stat-value">
-                {/* {user.stats.recipes} */}
-              </div>
+              <div className="profile-page__stat-value"></div>
               <div className="profile-page__stat-label">Рецептов</div>
             </div>
             <div className="profile-page__stat">
-              <div className="profile-page__stat-value">
-                {/* {user.stats.favorites} */}
+              <div className="profile-page__stat-label">
+                В избранном {favoriteRecipes.length}
               </div>
-              <div className="profile-page__stat-label">В избранном</div>
             </div>
             <div className="profile-page__stat">
-              <div className="profile-page__stat-value">
-                {/* {user.stats.followers} */}
-              </div>
+              <div className="profile-page__stat-value"></div>
               <div className="profile-page__stat-label">Подписчиков</div>
             </div>
           </div>
@@ -130,20 +85,32 @@ export function Account() {
           <div className="profile-page__card">
             <h2 className="profile-page__card-title">Мои избранные рецепты</h2>
             <div className="profile-page__favorites">
-              {favoriteRecipes.map((recipe) => (
-                <div key={recipe.id} className="profile-page__recipe">
-                  <div className="profile-page__recipe-image"></div>
-                  <div className="profile-page__recipe-info">
-                    <h3 className="profile-page__recipe-title">
-                      {recipe.title}
-                    </h3>
-                    <div className="profile-page__recipe-meta">
-                      <span>{recipe.time}</span>
-                      <span>♥ {recipe.likes}</span>
+              {favoriteRecipes.length > 0 ? (
+                favoriteRecipes.map((recipe: any) => (
+                  <div key={recipe.id} className="profile-page__recipe">
+                    <div className="profile-page__recipe-image">
+                      {recipe.image && (
+                        <img
+                          src={recipe.image}
+                          alt={recipe.title}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      )}
+                    </div>
+                    <div className="profile-page__recipe-info">
+                      <h3 className="profile-page__recipe-title">
+                        {recipe.title}
+                      </h3>
+                      <div className="profile-page__recipe-meta">
+                        {recipe.time && <span>{recipe.time} мин</span>}
+                        {recipe.likes && <span>♥ {recipe.likes}</span>}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p>Нет избранных рецептов</p>
+              )}
             </div>
           </div>
         </main>

@@ -84,7 +84,7 @@ function Search() {
         <Menu />
       </div>
 
-      <div className="search-result">
+      {/* <div className="search-result">
         <h1>Мой рецепт:</h1>
         {recipes.length > 0 ? (
           recipes.map((recipe) => (
@@ -96,7 +96,7 @@ function Search() {
         ) : (
           <p>Ничего не найдено</p>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

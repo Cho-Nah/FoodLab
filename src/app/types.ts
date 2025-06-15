@@ -26,7 +26,7 @@ export interface RecipeOfDay {
   id: number;
   title: string;
   info: string;
-  isFavorite: boolean;
+  // isFavorite: boolean;
 }
 
 export interface AllRecipes {
@@ -34,4 +34,5 @@ export interface AllRecipes {
   title: string;
   time: number;
   isFavorite: false;
+  info: string;
 }
