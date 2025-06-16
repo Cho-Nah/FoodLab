@@ -10,10 +10,13 @@ import HomePage from "./pages/HomePage";
 // import Auth from "./features/Auth";
 import { AccountPage } from "./pages/AccountPage";
 
+import { RecipeDetailPage } from "./pages/RecipeDetailPage";
+
 const router = createBrowserRouter([
   // { path: "/", element: <Auth /> },
   { path: "/", element: <HomePage /> },
   { path: "/account", element: <AccountPage /> },
+  { path: "/recipe/:id", element: <RecipeDetailPage /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

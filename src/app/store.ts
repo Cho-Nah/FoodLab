@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import searchReducer from "./slices/hintSlice";
 import sendReducer from "./slices/sendIngredientsSlice";
 import { registerReducer } from "./slices/RegisterSlice";
-import FavoriteSlice from "../app/slices/Favorite";
+import FavoriteSlice from "./slices/Favorite";
 
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas/rootSaga";

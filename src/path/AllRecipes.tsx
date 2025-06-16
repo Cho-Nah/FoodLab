@@ -33,6 +33,7 @@ function allRecipes() {
       time: 30,
       isFavorite: false,
       info: "",
+      steps: [],
     },
     {
       id: 5,
@@ -40,6 +41,7 @@ function allRecipes() {
       time: 30,
       isFavorite: false,
       info: "",
+      steps: [],
     },
     {
       id: 6,
@@ -47,13 +49,16 @@ function allRecipes() {
       time: 30,
       isFavorite: false,
       info: "",
+      steps: [],
     },
+
     {
       id: 7,
       title: "Спагетти с индейкой по скуфски",
       time: 30,
       isFavorite: false,
       info: "",
+      steps: [],
     },
     {
       id: 8,
@@ -61,6 +66,7 @@ function allRecipes() {
       time: 30,
       isFavorite: false,
       info: "",
+      steps: [],
     },
     {
       id: 9,
@@ -68,6 +74,7 @@ function allRecipes() {
       time: 30,
       isFavorite: false,
       info: "",
+      steps: [],
     },
 
     {
@@ -76,6 +83,7 @@ function allRecipes() {
       time: 10,
       isFavorite: false,
       info: "",
+      steps: [],
     },
 
     {
@@ -84,6 +92,7 @@ function allRecipes() {
       time: 30,
       isFavorite: false,
       info: "",
+      steps: [],
     },
   ];
 

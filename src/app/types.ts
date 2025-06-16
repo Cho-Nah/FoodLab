@@ -27,6 +27,8 @@ export interface RecipeOfDay {
   title: string;
   info: string;
   // isFavorite: boolean;
+  image?: string;
+  steps: RecipeStep[];
 }
 
 export interface AllRecipes {
@@ -35,4 +37,11 @@ export interface AllRecipes {
   time: number;
   isFavorite: false;
   info: string;
+  steps: RecipeStep[];
+}
+
+export interface RecipeStep {
+  number: number;
+  description: string;
+  image: string;
 }

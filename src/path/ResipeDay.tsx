@@ -7,6 +7,8 @@ import favoriteActiveImg from "../img/active-favorite.svg";
 
 import "../app/types";
 
+import { useNavigate } from "react-router-dom";
+
 // import { RootState } from "../app/store"; // <-- если у тебя есть тип
 
 import { RecipeOfDay } from "../app/types";
@@ -18,6 +20,7 @@ import { addOrRemoveFavorite } from "../app/slices/Favorite";
 function recipeOfDay() {
   const favorites = useSelector((state: any) => state.favorite);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleFavorite(recipe: RecipeOfDay) {
     dispatch(addOrRemoveFavorite(recipe));
@@ -29,6 +32,7 @@ function recipeOfDay() {
       title: "Запеканка за 5 минут",
       info: "info-text-cards",
       // isFavorite: true,
+      steps: [],
     },
 
     {
@@ -36,6 +40,7 @@ function recipeOfDay() {
       title: "Рыба по флотски",
       info: "info-text-cards",
       // isFavorite: false,
+      steps: [],
     },
 
     {
@@ -43,6 +48,7 @@ function recipeOfDay() {
       title: "Нутовое пюре с хумусом",
       info: "info-text-cards",
       // isFavorite: false,
+      steps: [],
     },
   ];
 
@@ -65,6 +71,7 @@ function recipeOfDay() {
               src={recipeImages[recipe.id]}
               className="recipe-img"
               alt={recipe.title}
+              onClick={() => navigate(`/recipe/${recipe.id}`)}
             />
             <h1 className="main-text-cards">{recipe.title}</h1>
             <p className="info-text-cards">{recipe.info}</p>
@@ -72,7 +79,10 @@ function recipeOfDay() {
               src={isInFavorites ? favoriteActiveImg : favoriteImg}
               className="favorite-cards"
               alt="favorite"
-              onClick={() => handleFavorite(recipe)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleFavorite(recipe);
+              }}
             />
           </div>
         );
