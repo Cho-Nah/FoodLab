@@ -23,12 +23,12 @@ function Menu() {
   return (
     <div className="group-buttons">
       <div className="container-buttons">
-        <button className="button">
-          <img src={list} alt="" onClick={handleAccountButton} />
+        <button className="button" onClick={handleAccountButton}>
+          <img src={list} alt="" />
         </button>
 
-        <button className="button">
-          <img src={bookmark} alt="" onClick={handleAccountButton} />
+        <button className="button" onClick={handleAccountButton}>
+          <img src={bookmark} alt="" />
         </button>
 
         <button className="button" onClick={handleAccountButton}>

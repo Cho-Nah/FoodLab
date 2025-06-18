@@ -14,85 +14,91 @@ import favoriteActiveImg from "../img/active-favorite.svg";
 
 import "../style.sass";
 
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addOrRemoveFavorite } from "../app/slices/Favorite";
 
-function allRecipes() {
+function AllRecipesPage() {
+  const dispatch = useDispatch();
+  const favorites = useSelector((state: any) => state.favorite);
+  const navigate = useNavigate();
+
   function handleFavorite(recipe: AllRecipes) {
     dispatch(addOrRemoveFavorite(recipe));
   }
 
-  const dispatch = useDispatch();
-  const favorites = useSelector((state: any) => state.favorite);
-
   const mockAllRecipes: AllRecipes[] = [
     {
       id: 4,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 1",
       time: 30,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
     {
       id: 5,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 2",
       time: 30,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
     {
       id: 6,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 3",
       time: 30,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
-
     {
       id: 7,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 4",
       time: 30,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
     {
       id: 8,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 5",
       time: 30,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
     {
       id: 9,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 6",
       time: 30,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
-
     {
       id: 10,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 7",
       time: 10,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
-
     {
       id: 11,
-      title: "Спагетти с индейкой по скуфски",
+      title: "Спагетти с индейкой по-скуфски 8",
       time: 30,
-      isFavorite: false,
+      // isFavorite: false,
       info: "",
       steps: [],
+      type: "all",
     },
   ];
 
@@ -118,7 +124,11 @@ function allRecipes() {
           );
 
           return (
-            <div key={recipe.id} className="all-recipe-container">
+            <div
+              key={recipe.id}
+              className="all-recipe-container"
+              onClick={() => navigate(`/all-recipes/${recipe.id}`)}
+            >
               <img
                 src={recipeImages[recipe.id] || firstAllRecipe}
                 className="all-recipe-img"
@@ -130,7 +140,10 @@ function allRecipes() {
                 src={isInFavorites ? favoriteActiveImg : favoriteImg}
                 className="favorite-cards"
                 alt="favorite"
-                onClick={() => handleFavorite(recipe)}
+                onClick={(e) => {
+                  e.stopPropagation(); // предотврати переход при клике на иконку
+                  handleFavorite(recipe);
+                }}
               />
             </div>
           );
@@ -140,4 +153,4 @@ function allRecipes() {
   );
 }
 
-export default allRecipes;
+export default AllRecipesPage;

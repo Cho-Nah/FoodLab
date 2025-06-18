@@ -1,3 +1,5 @@
+// src/components/recipeOfDay.tsx
+
 import firstRecipeDay from "../img/first-recipeday.svg";
 import secondRecipeDay from "../img/second-recipeday.svg";
 import thirdRecipeDay from "../img/third-recipeday.svg";
@@ -5,50 +7,37 @@ import thirdRecipeDay from "../img/third-recipeday.svg";
 import favoriteImg from "../img/favorites.svg";
 import favoriteActiveImg from "../img/active-favorite.svg";
 
-import "../app/types";
-
 import { useNavigate } from "react-router-dom";
-
-// import { RootState } from "../app/store"; // <-- если у тебя есть тип
-
+import { useSelector, useDispatch } from "react-redux";
+import { addOrRemoveFavorite } from "../app/slices/Favorite";
 import { RecipeOfDay } from "../app/types";
 
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { addOrRemoveFavorite } from "../app/slices/Favorite";
-
-function recipeOfDay() {
+function RecipeOfDayComponent() {
   const favorites = useSelector((state: any) => state.favorite);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  function handleFavorite(recipe: RecipeOfDay) {
-    dispatch(addOrRemoveFavorite(recipe));
-  }
 
   const mockResipeOfDay: RecipeOfDay[] = [
     {
       id: 1,
       title: "Запеканка за 5 минут",
       info: "info-text-cards",
-      // isFavorite: true,
       steps: [],
+      type: "day",
     },
-
     {
       id: 2,
       title: "Рыба по флотски",
       info: "info-text-cards",
-      // isFavorite: false,
       steps: [],
+      type: "day",
     },
-
     {
       id: 3,
       title: "Нутовое пюре с хумусом",
       info: "info-text-cards",
-      // isFavorite: false,
       steps: [],
+      type: "day",
     },
   ];
 
@@ -62,7 +51,7 @@ function recipeOfDay() {
     <div className="recipes-day">
       {mockResipeOfDay.map((recipe) => {
         const isInFavorites = favorites.some(
-          (fav: RecipeOfDay) => fav.id === recipe.id
+          (fav: RecipeOfDay) => fav.id === recipe.id && fav.type === "day"
         );
 
         return (
@@ -81,7 +70,7 @@ function recipeOfDay() {
               alt="favorite"
               onClick={(e) => {
                 e.stopPropagation();
-                handleFavorite(recipe);
+                dispatch(addOrRemoveFavorite(recipe));
               }}
             />
           </div>
@@ -91,4 +80,4 @@ function recipeOfDay() {
   );
 }
 
-export default recipeOfDay;
+export default RecipeOfDayComponent;

@@ -1,27 +1,33 @@
+// src/app/slices/favoriteSlice.ts
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RecipeOfDay } from "../types";
 
-const initialState: RecipeOfDay[] = [];
+interface FavoriteItem {
+  id: number;
+  type: "filter" | "day" | "all" | "recipe";
+  [key: string]: any; // Разрешаем любые другие поля
+}
 
-const FavoriteSlice = createSlice({
-  name: "FavoriteRecipe",
+const initialState: FavoriteItem[] = [];
+
+const favoriteSlice = createSlice({
+  name: "favorite",
   initialState,
   reducers: {
-    addOrRemoveFavorite(state, action: PayloadAction<RecipeOfDay>) {
-      const index = state.findIndex(
-        (recipe) => recipe.id === action.payload.id
+    addOrRemoveFavorite(state, action: PayloadAction<FavoriteItem>) {
+      const recipe = action.payload;
+      const existingIndex = state.findIndex(
+        (item) => item.id === recipe.id && item.type === recipe.type
       );
-      if (index !== -1) {
-        state.splice(index, 1);
+
+      if (existingIndex >= 0) {
+        state.splice(existingIndex, 1); // Удалить из избранного
       } else {
-        state.push({ ...action.payload });
+        state.push(recipe); // Добавить в избранное
       }
     },
-
-    addOrRemoveFavoriteForSaga(state, action: PayloadAction<RecipeOfDay>) {},
   },
 });
 
-export const { addOrRemoveFavorite, addOrRemoveFavoriteForSaga } =
-  FavoriteSlice.actions;
-export default FavoriteSlice.reducer;
+export const { addOrRemoveFavorite } = favoriteSlice.actions;
+export default favoriteSlice.reducer;

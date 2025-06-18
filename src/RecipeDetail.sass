@@ -1,0 +1,137 @@
+$titleFont: "Raleway-Bold", sans-serif
+$mainFont: "Inter-Bold", sans-serif
+$allRecipeTitle: "Inter-SemiBold", sans-serif
+  
+// * 
+//   outline: 1px solid red // для визуального отладки
+
+
+  
+  @font-face
+  font-family: "Raleway-Bold"
+  src: url("./fonts/Raleway-Bold.ttf") format("truetype")
+  font-weight: bold
+  font-style: normal
+  font-display: swap 
+
+@font-face
+  font-family: "Inter-Bold"
+  src: url("./fonts/Inter_18pt-Bold.ttf") format("truetype")
+  font-style: normal
+  font-display: swap 
+
+@font-face
+  font-family: "Inter-SemiBold"
+  src: url("./fonts/Inter_24ptSemiBold.ttf") format("truetype")
+  // font-weight: 600
+  font-style: normal
+  font-display: swap
+
+  
+.recipe-detail
+  max-width: min(90vw, 900px)
+  width: 100%
+  margin: 1.5rem auto
+  border-radius: 0.75rem
+  overflow: hidden
+  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08)
+  font-family: $mainFont
+  background-color: #fff
+
+.cover
+  width: 100%
+  height: 30vh
+  min-height: 200px
+  max-height: 250px
+  background-color: #f8f8f8
+  position: relative
+  overflow: hidden
+
+  img
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+    filter: brightness(0.95)
+
+.overlay
+  position: absolute
+  bottom: 0
+  left: 0
+  right: 0
+  padding: 1rem
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent)
+
+  h1
+    color: white
+    font-size: clamp(1.5rem, 5vw, 2rem)
+    margin: 0
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3)
+
+.content
+  padding: 1.5rem
+
+.meta
+  display: flex
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 1.5rem
+  gap: 1rem
+
+.meta-info
+  display: flex
+  gap: 1.5rem
+
+.meta-info-item-value
+  font-size: 1rem
+  font-weight: 600
+  color: #444
+  font-family: $allRecipeTitle
+
+.meta-info-item-label
+  font-size: 0.8rem
+  color: #777
+  font-family: $titleFont
+
+.favorite-btn
+  background-color: #ff9f43 // насыщенный оранжевый
+  border: none
+  border-radius: 0.75rem
+  padding: 0.5rem
+  cursor: pointer
+  display: flex
+  align-items: center
+  justify-content: center
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15)
+
+  &:hover
+    background-color: #ff7f1f
+    transform: scale(1.1)
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2)
+
+  &:active
+    transform: scale(0.95)
+
+  img
+    width: 1.8rem
+    height: 1.8rem
+    filter: brightness(0) invert(1) // делает иконку белой, если она чёрная
+
+
+  &:hover
+    transform: scale(1.1)
+
+  img
+    width: 1.8rem
+    height: 1.8rem
+
+.description
+  font-size: 1rem
+  line-height: 1.5
+  color: #555
+  margin-bottom: 1.5rem
+  padding: 0.75rem
+  background-color: #f9f9f9
+  border-radius: 0.5rem
+  font-family: $mainFont

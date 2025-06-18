@@ -2,8 +2,11 @@ import "../Account.sass";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { getUserFromIndexedDB } from "../../User";
+import { useNavigate } from "react-router-dom";
 
 export function Account() {
+  const navigate = useNavigate();
+
   const user = useSelector((state: any) => state.register);
   const favoriteRecipes = useSelector((state: any) => state.favorite);
 
@@ -73,7 +76,10 @@ export function Account() {
         <main className="profile-page__main">
           <div className="profile-page__card">
             <div className="profile-page__actions">
-              <button className="profile-page__button profile-page__button--primary">
+              <button
+                className="profile-page__button profile-page__button--primary"
+                onClick={() => navigate(`/`)}
+              >
                 Добавить рецепт
               </button>
               <button className="profile-page__button profile-page__button--secondary">

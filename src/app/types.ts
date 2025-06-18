@@ -14,6 +14,7 @@ export interface FilterData {
   tags: string[];
   name: string;
   description: string;
+  type: "filter";
 }
 
 export interface User {
@@ -29,15 +30,17 @@ export interface RecipeOfDay {
   // isFavorite: boolean;
   image?: string;
   steps: RecipeStep[];
+  type: "day";
 }
 
 export interface AllRecipes {
   id: number;
   title: string;
   time: number;
-  isFavorite: false;
+  // isFavorite: false;
   info: string;
   steps: RecipeStep[];
+  type: "all";
 }
 
 export interface RecipeStep {

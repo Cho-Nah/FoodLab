@@ -75,7 +75,6 @@ function Search() {
           className="search-receip-button"
           onClick={() => {
             dispatch(sendIngredients(value));
-            console.log(value);
           }}
         >
           Отправить

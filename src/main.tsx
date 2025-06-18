@@ -11,12 +11,14 @@ import HomePage from "./pages/HomePage";
 import { AccountPage } from "./pages/AccountPage";
 
 import { RecipeDetailPage } from "./pages/RecipeDetailPage";
+import { AllRecipeDetailPage } from "./pages/AllRecipeDetailPage";
 
 const router = createBrowserRouter([
   // { path: "/", element: <Auth /> },
   { path: "/", element: <HomePage /> },
   { path: "/account", element: <AccountPage /> },
   { path: "/recipe/:id", element: <RecipeDetailPage /> },
+  { path: "/all-recipes/:id", element: <AllRecipeDetailPage /> },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

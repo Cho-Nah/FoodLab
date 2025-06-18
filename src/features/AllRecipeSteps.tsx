@@ -1,7 +1,7 @@
-import { RecipeOfDay } from "../app/types";
+import { AllRecipes } from "../app/types";
 import "../RecipeSteps.sass";
 
-export const RecipeSteps = ({ recipe }: { recipe: RecipeOfDay }) => {
+export const AllRecipeSteps = ({ recipe }: { recipe: AllRecipes }) => {
   return (
     <div className="recipe-steps">
       <h2 className="recipe-steps__title">Шаги приготовления</h2>

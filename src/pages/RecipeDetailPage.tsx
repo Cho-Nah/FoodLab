@@ -10,6 +10,8 @@ import thirdRecipeDay from "../img/third-recipeday.svg";
 import favoriteImg from "../img/favorites.svg";
 import favoriteActiveImg from "../img/active-favorite.svg";
 
+import "../RecipeDetail.sass";
+
 export const RecipeDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const recipeId = Number(id);
@@ -113,163 +115,44 @@ export const RecipeDetailPage = () => {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "min(90vw, 900px)",
-        width: "100%",
-        margin: "1.5rem auto",
-        borderRadius: "0.75rem",
-        overflow: "hidden",
-        boxShadow: "0 0.25rem 1rem rgba(0,0,0,0.08)",
-        fontFamily: "Arial, sans-serif",
-        backgroundColor: "#fff",
-      }}
-    >
-      {/* Обложка рецепта */}
-      <div
-        style={{
-          width: "100%",
-          height: "30vh",
-          minHeight: "200px",
-          maxHeight: "250px",
-          backgroundColor: "#f8f8f8",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <img
-          src={recipeImages[recipe.id]}
-          alt={recipe.title}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            objectPosition: "center",
-            filter: "brightness(0.95)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            padding: "1rem",
-            background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)",
-          }}
-        >
-          <h1
-            style={{
-              color: "white",
-              fontSize: "clamp(1.5rem, 5vw, 2rem)",
-              margin: 0,
-              textShadow: "0 1px 3px rgba(0,0,0,0.3)",
-            }}
-          >
-            {recipe.title}
-          </h1>
+    <div className="recipe-detail">
+      <div className="cover">
+        <img src={recipeImages[recipe.id]} alt={recipe.title} />
+        <div className="overlay">
+          <h1>{recipe.title}</h1>
         </div>
       </div>
 
-      {/* Основной контент */}
-      <div style={{ padding: "1.5rem" }}>
-        {/* Мета-информация */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "1.5rem",
-            gap: "1rem",
-          }}
-        >
-          <div style={{ display: "flex", gap: "1.5rem" }}>
+      <div className="content">
+        <div className="meta">
+          <div className="meta-info">
             <div>
-              <div
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                  color: "#444",
-                }}
-              >
+              <div className="meta-info-item-value">
                 {recipe.id === 1
                   ? "25 мин"
                   : recipe.id === 2
                   ? "50 мин"
                   : "2 ч"}
               </div>
-              <div
-                style={{
-                  fontSize: "0.8rem",
-                  color: "#777",
-                }}
-              >
-                Время
-              </div>
+              <div className="meta-info-item-label">Время</div>
             </div>
             <div>
-              <div
-                style={{
-                  fontSize: "1rem",
-                  fontWeight: 600,
-                  color: "#444",
-                }}
-              >
+              <div className="meta-info-item-value">
                 {recipe.id === 1 ? "1/5" : recipe.id === 2 ? "2/5" : "3/5"}
               </div>
-              <div
-                style={{
-                  fontSize: "0.8rem",
-                  color: "#777",
-                }}
-              >
-                Сложность
-              </div>
+              <div className="meta-info-item-label">Сложность</div>
             </div>
           </div>
 
-          <button
-            onClick={handleFavorite}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: "0.5rem",
-            }}
-          >
+          <button onClick={handleFavorite} className="favorite-btn">
             <img
               src={isFavorite ? favoriteActiveImg : favoriteImg}
               alt="Добавить в избранное"
-              style={{
-                width: "1.8rem",
-                height: "1.8rem",
-                transition: "transform 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.transform = "scale(1.1)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.transform = "scale(1)")
-              }
             />
           </button>
         </div>
 
-        {recipe.info && (
-          <p
-            style={{
-              fontSize: "1rem",
-              lineHeight: 1.5,
-              color: "#555",
-              marginBottom: "1.5rem",
-              padding: "0.75rem",
-              backgroundColor: "#f9f9f9",
-              borderRadius: "0.5rem",
-            }}
-          >
-            {recipe.info}
-          </p>
-        )}
+        {recipe.info && <p className="description">{recipe.info}</p>}
 
         <RecipeSteps recipe={recipe} />
       </div>
